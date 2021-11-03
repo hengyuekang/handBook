@@ -118,10 +118,10 @@ Set\map:**ordered**
 
 rBegin():**the last one**
 
-find if a element in a map:
+find if a **key** in a map:
 
 ~~~c++
-map.count()
+map.count(key)
 //in:1,not:0
 ~~~
 
@@ -361,3 +361,72 @@ find the minlen of string in case of segment fault
 
 you need to **get a whole line** to string
 
+## PAT1062
+
+Sort all info **in one manner!**
+
+~~~c++
+// order only using this one
+bool cmp(info &a, info &b)
+{
+    // return a boolean expression to subtract situation
+    if(a.flag!=b.flag) return a.flag<b.flag;
+    else if(a.sum!=b.sum) return a.sum>b.sum;
+    else if(a.vg!=b.vg) return a.vg>b.vg;
+    else a.id<b.id;
+}
+~~~
+
+Cin faster than printf
+
+## pat1012
+
+Accumulate:**numeric**
+
+Now:determine to compare wich as a **index**
+
+~~~c
+bool cmp(Stu &a, Stu &b)
+{ return a.grade[now]>b.grade[now];}
+~~~
+
+consider about same rank:
+
+- the first one is must 1st,but the last is **not definately Nth**
+- next one depends on the beforehand one ,it's the **correct order**
+
+~~~c
+Rank[stu[0].id][now]=1;
+        for(int i=1;i<N;i++)
+        {
+            if(stu[i].grade[now]==stu[i-1].grade[now])
+            {
+                Rank[stu[i].id][now]=Rank[stu[i-1].id][now];
+            }
+            else
+            {
+                Rank[stu[i].id][now]=i+1;
+            }
+        }
+        // some extrme examples!
+        // for(int j=0;j<N-1;)
+        // {
+        //     if(stu[j].grade[now]==stu[j+1].grade[now])
+        //     {
+        //         Rank[stu[j].id][now]=Rank[stu[j+1].id][now]=curr_rank;
+        //         curr_rank+=2;
+        //         j+=2;
+        //     }
+        //     else
+        //     {
+        //         Rank[stu[j].id][now]=curr_rank;
+        //         curr_rank++;
+        //         j++;
+        //     }
+        // }
+        // Rank[stu[N-1].id][now]=N;
+~~~
+
+## pta1016
+
+chronological：ordered by time series
